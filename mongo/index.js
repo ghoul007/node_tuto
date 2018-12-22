@@ -4,11 +4,46 @@ mongoose.connect('mongodb://localhost:27017/playground').then(
 ).catch((error) => console.log('Error to connect to mongoDB....' + error))
 
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255,
+        // lowercase:true,
+        // trim:true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ['web', 'mobile', 'network'],
+    
+    },
     author: String,
-    tags: [String],
+    tags: {
+        type: Array,
+        validate: {
+            isAsync: true,
+            validator: function (v, callback) {
+                setTimeout(() => {
+                    const r = v && v.length > 0
+                    callback(r)
+                }, 1000);
+            },
+            message: 'the course should be greater 0'
+        }
+    },
     data: { type: Date, default: Date.now },
-    isPublished: Boolean
+    isPublished: Boolean,
+    price: {
+        type: Number,
+        min: 10,
+        max: 20,
+        required: function () {
+            return this.isPublished;
+        },
+        get:v=> Math.round(v),
+        set:v=> Math.round(v)
+    }
 })
 
 const Course = mongoose.model('Course', courseSchema)
@@ -16,11 +51,23 @@ createCourse = async () => {
     const course = new Course({
         name: 'Angular',
         author: 'ahmed',
-        tag: ['angular', 'js'],
-        isPublished: true
+        category: 'web',
+        tags: ["angular"],
+        isPublished: true,
+        price: 10.5
     })
-    const result = await course.save();
-    console.log(result)
+    try {
+        const isValid = await course.validate();
+        const result = await course.save();
+        console.log(result)
+
+    } catch (ex) {
+        for(field in ex.errors){
+            console.log("ex ", ex.errors[field]);
+        }
+
+    }
+
 }
 
 getCourse = async () => {
@@ -68,7 +115,7 @@ updateCourse2 = async (id) => {
     console.log("result ", course);
 }
 
-removeCourse  = async (id) => {
+removeCourse = async (id) => {
     // const result = await Course.deleteOne({_id: id})
     const course = await Course.findByIdAndDelete(id)
 
@@ -76,7 +123,7 @@ removeCourse  = async (id) => {
 
 }
 
-removeCourse('5c1d59c32588223989e48909')
+// removeCourse('5c1d59c32588223989e48909')
 // updateCourse2('5c1d59c32588223989e48909')
 // getCourse();
-// createCourse();
+createCourse();
