@@ -1,4 +1,5 @@
-
+const mongoose = require('mongoose')
+const Joi = require('joi')
 const Course = mongoose.model('Course', new mongoose.Schema({
     name: {
         type: String,

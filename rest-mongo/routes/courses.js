@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
 const Joi = require('joi')
-const {ValidatCustomer, Customer} = require('../models/customer')
+const {ValidatCourse, Course} = require('../models/course')
 
 
 
