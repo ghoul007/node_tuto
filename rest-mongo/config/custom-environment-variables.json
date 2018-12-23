@@ -1,3 +1,4 @@
 {
-    "pass":"password_app"
+    "pass":"password_app",
+    "jwtsecret":"jwtsecret"
 }

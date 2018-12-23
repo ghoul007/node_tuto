@@ -12,9 +12,18 @@ const home = require('./routes/home')
 const courses = require('./routes/courses')
 const customers = require('./routes/customers')
 const rentals = require('./routes/rentals')
+const users = require('./routes/users')
+const auth = require('./routes/auth')
 const app = express()
 const mongoose = require('mongoose')
 app.use(express.json())
+
+if(!config.get('jwtsecret')){
+    console.log('FATAL ERROR: jwtsecret is not defined');
+    process.exit(1);
+}
+
+
 mongoose.connect('mongodb://localhost:27017/courses').then(
     ()=> console.log('Connected to mongoDB')
 )
@@ -23,6 +32,8 @@ mongoose.connect('mongodb://localhost:27017/courses').then(
 app.use('/api/courses', courses)
 app.use('/api/customers', customers)
 app.use('/api/rentals', rentals)
+app.use('/api/users', users)
+app.use('/api/auth', auth)
 app.use('/', home)
 
 app.set('view engine','pug');
