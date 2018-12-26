@@ -63,6 +63,23 @@ describe('register user', () => {
     });
     it('shoul retun a user if valid username is passed', () => {
         const result = lib.registerUser('ahmed');
-        expect(result).toMatchObject({'username': 'ahmed'})
+        expect(result).toMatchObject({ 'username': 'ahmed' })
     });
 });
+
+describe('notifyCustomer', () => {
+    it('should send an email to the customer', () => {
+
+        const mockFunction = jest.fn();
+        mochFunction.mockReturnValue(1);
+        mochFunction.mockResolvedValue(1)
+        mochFunction.mockRejectedValue(new Error('...'))
+        const result = await mockFunction();
+
+        const getCustomerSync = jest.fn().mockReturnValue({email:'a'})
+
+        expect(order.totalPrice).toBe(9)
+    });
+});
+
+

@@ -22,9 +22,11 @@
     "winston": "^2.4.0",
     "winston-mongodb": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll",
     "start": "node index.js"
   },
   "keywords": [],
