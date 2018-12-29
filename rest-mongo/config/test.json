@@ -1,4 +1,7 @@
 {
-    "name":"My APP"
-    
+    "name":"My APP",
+    "db":"mongodb://localhost:27017/courses-test",
+    "mail":{
+        "host":"prod.mail"
+    }
 }

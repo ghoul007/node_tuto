@@ -12,7 +12,7 @@ const Course = mongoose.model('Course', new mongoose.Schema({
 
 function ValidatCourse(course) {
     const schema = {
-        name: Joi.string().min(3).required(),
+        name: Joi.string().min(5).required(),
     }
     return Joi.validate(course, schema);
 }

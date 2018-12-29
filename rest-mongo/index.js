@@ -27,7 +27,7 @@ app.set('views', './views');
 
 console.log(`Application Name: ${config.get('name')}`)
 console.log(`Application Mail: ${config.get('mail.host')}`)
-console.log(`Application Passwod: ${config.get('pass')}`)
+// console.log(`Application Passwod: ${config.get('pass')}`)
 //in console =>  export NODE_ENV ='prod'
 console.log(`app (NODE_ENV): ${app.get('env')}`)
 
@@ -38,4 +38,6 @@ if (app.get('env') === 'development') {
 }
 dbDebugger('Connected to db');
 const port = process.env.PORT || 3000
-app.listen(port, () => winston.info(`listening port ${port}`))
+const server = app.listen(port, () => winston.info(`listening port ${port}`))
+
+module.exports = server;

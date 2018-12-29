@@ -1,3 +1,4 @@
+const valideObjectID = require('../middleware/validateObjectId')
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
@@ -6,17 +7,16 @@ const { ValidatCourse, Course } = require('../models/course')
 const auth = require('../middleware/auth')
 const admin = require('../middleware/admin')
 const asyncMiddleware = require('../middleware/async')
- require('express-async-errors');
-
+require('express-async-errors');
 
 // router.get('/', auth, admin, async (req, res) => {
 // router.get('/', auth, asyncMiddleware(async (req, res,) => {
-router.get('/', auth,  async (req, res,) => {
+router.get('/', async (req, res, ) => {
     const courses = await Course.find().sort('name');
     res.send(courses)
 })
 
-router.get('/:id', auth, asyncMiddleware(async (req, res) => {
+router.get('/:id', valideObjectID, asyncMiddleware(async (req, res) => {
     const course = await Course.findById(req.params.id);
     if (!course) res.status(404).send('Not found')
     res.send(course)
