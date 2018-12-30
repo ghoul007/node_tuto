@@ -7,7 +7,7 @@ describe('/api/courses', () => {
         server = require('../../index')
     })
     afterEach(async () => {
-        server.close();
+        await server.close();
         await Course.remove({})
     })
     describe('GET /', () => {

@@ -4,7 +4,7 @@ const { Course } = require('../../models/course')
 describe('auth middleware', () => {
 
     beforeEach(() => { server = require('../../index') })
-    afterEach(async() => { server.close();   await Course.remove({}) })
+    afterEach(async() => { await server.close();   await Course.remove({}) })
 
     let token;
 

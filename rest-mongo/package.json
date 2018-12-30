@@ -27,7 +27,8 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "test": "jest --watchAll --verbose --coverage",
+    "test": "jest --watchAll --verbose",
+    "testc": "jest --watchAll --verbose --coverage",
     "start": "node index.js"
   },
   "keywords": [],

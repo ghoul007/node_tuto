@@ -29,8 +29,7 @@ router.post('/', auth, async (req, res) => {
         return res.status(400).send(error);
 
     }
-
-    console.log("req.body ", req.body);
+ 
     let course = new Course({ name: req.body.name });
     course = await course.save();
     res.send(course);
