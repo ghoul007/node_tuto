@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^3.0.2",
+    "compression": "^1.7.3",
     "config": "^3.0.1",
     "debug": "^4.1.0",
     "express": "^4.16.4",
@@ -30,6 +31,9 @@
     "test": "jest --watchAll --verbose",
     "testc": "jest --watchAll --verbose --coverage",
     "start": "node index.js"
+  },
+  "engines": {
+    "node":"10.8.0"
   },
   "keywords": [],
   "author": "",

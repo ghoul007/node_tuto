@@ -1,3 +1,4 @@
 {
-    "jwtsecret":"jwtsecret"
+    "jwtsecret":"jwtsecret",
+    "db":"course_db"
 }
